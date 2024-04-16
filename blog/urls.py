@@ -5,5 +5,5 @@ app_name = "blog"
 
 urlpatterns = [
     path("", views.posts_list, name="posts_list"),
-    path("<int:id>/", views.post_detail, name="post_detail"),
+    path("<int:year>/<int:month>/<int:day>/<slug:post>/", views.post_detail, name="post_detail"),
 ]
