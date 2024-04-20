@@ -10,7 +10,7 @@
             на {{ form.cleaned_data.to }}.
         </p>
     {% else %}
-        <h1>Share "{{ post.title }}" by e-mail</h1>
+        <h1>Отправить "{{ post.title }}" по почте</h1>
         <form method="post">
             {{ form.as_p }}
             {% csrf_token %}
