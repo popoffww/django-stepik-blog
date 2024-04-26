@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
+from taggit.managers import TaggableManager
 
 class PublishedManager(models.Manager):
     def get_queryset(self):
@@ -17,6 +18,7 @@ class Post(models.Model):
     slug = models.SlugField(max_length=250, unique_for_date="publish")
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_posts")
     body = models.TextField()
+    tags = TaggableManager()
 
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
@@ -27,6 +29,8 @@ class Post(models.Model):
     published = PublishedManager() # конкретно-прикладной менеджер
 
     class Meta:
+        verbose_name = "Пост"
+        verbose_name_plural = "Посты"
         ordering = ["-publish"]
         indexes = [
             models.Index(fields=["-publish"])
@@ -59,6 +63,8 @@ class Comment(models.Model):
     active = models.BooleanField(default=True)
 
     class Meta:
+        verbose_name = "Комментарий"
+        verbose_name_plural = "Комментарии"
         ordering = ['created']
         indexes = [
             models.Index(fields=['created']),
@@ -66,4 +72,10 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment by {self.name} on {self.post}'
+
+
+
+
+
+
 

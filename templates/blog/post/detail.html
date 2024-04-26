@@ -21,7 +21,7 @@
     {% for comment in comments %}
         <div class="comment">
             <p class="info">
-                Комментаоий {{ forloop.counter }} от {{ comment.name }}
+                Комментарий № {{ forloop.counter }} от {{ comment.name }}
                 ( {{ comment.created }} )
             </p>
             {{ comment.body|linebreaks }}

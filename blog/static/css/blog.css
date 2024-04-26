@@ -21,13 +21,13 @@ h2 {
 }
 
 #content {
-    float: left;
+    float: right;
     width: 60%;
     padding: 0 0 0 30px;
 }
 
 #sidebar {
-    float: right;
+    float: left;
     width: 30%;
     padding: 10px;
     background: #efefef;
