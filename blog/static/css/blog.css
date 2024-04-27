@@ -32,6 +32,15 @@ h2 {
     padding: 10px;
     background: #efefef;
     height: 100%;
+    position: relative
+}
+
+.admin {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    padding: 49px 15px;
 }
 
 p.date {
