@@ -18,7 +18,7 @@
     <a href="{% url 'blog:post_search' %}">Поиск</a>
 
     {% if user.is_authenticated  %}
-        <a class="admin" href="/admin">Админ</a>
+    <a class="admin" href="/admin">Админ</a>
     {% endif %}
 
     <h2>
@@ -29,6 +29,19 @@
 
     <p>Про Django и другое</p>
     <p>Всего опубликовано {% total_posts %} постов</p>
+
+    <hr>
+    {% if user.is_authenticated %}
+        Привет, {{ user.username }}!
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <a href="#" onclick="parentNode.submit();">Выйти</a>
+    </form>
+    {% else %}
+        <p>Вы не авторизованы</p>
+        <a href="{% url 'login' %}">Войти</a>
+    {% endif %}
+    <hr>
 
      <h3>Последние посты</h3>
     {% show_latest_posts 3 %}
