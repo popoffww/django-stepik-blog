@@ -1,3 +1,30 @@
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
+
+# social auth configs for github
+SOCIAL_AUTH_GITHUB_KEY = str(os.getenv('GITHUB_KEY'))
+SOCIAL_AUTH_GITHUB_SECRET = str(os.getenv('GITHUB_SECRET'))
+
+# social auth configs for google
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = str(os.getenv('GOOGLE_KEY'))
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = str(os.getenv('GOOGLE_SECRET'))
+
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = "django-insecure-b_ny_%r6$j^8ge5i&d+59@@sy^^we2+kjk*n9vi8a2=ovxr4!g"
+
+# social auth configs for github
+SOCIAL_AUTH_GITHUB_KEY = 'Ov23ctTZW5Zk8NToV2hN'
+SOCIAL_AUTH_GITHUB_SECRET = 'e376b273492e137b78bc83e31aa67d4f5824e0a3'
+# social auth configs for google
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '290148171356-pg45o3vdpvan6ognhnke4rm2uvehbtcm.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+
 """
 Django settings for mysite project.
 
@@ -19,8 +46,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-b_ny_%r6$j^8ge5i&d+59@@sy^^we2+kjk*n9vi8a2=ovxr4!g"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -44,6 +69,8 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django.contrib.postgres',
     'accounts.apps.AccountsConfig',
+    # pip install social-auth-app-django
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +85,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "mysite.urls"
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -69,6 +104,9 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                # new code
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
