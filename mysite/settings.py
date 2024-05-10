@@ -18,8 +18,8 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = str(os.getenv('GOOGLE_SECRET'))
 SECRET_KEY = "django-insecure-b_ny_%r6$j^8ge5i&d+59@@sy^^we2+kjk*n9vi8a2=ovxr4!g"
 
 # social auth configs for github
-# SOCIAL_AUTH_GITHUB_KEY = 'Ov23ctTZW5Zk8NToV2hN'
-# SOCIAL_AUTH_GITHUB_SECRET = 'e376b273492e137b78bc83e31aa67d4f5824e0a3'
+SOCIAL_AUTH_GITHUB_KEY = 'Ov23ctTZW5Zk8NToV2hN'
+SOCIAL_AUTH_GITHUB_SECRET = 'e376b273492e137b78bc83e31aa67d4f5824e0a3'
 # social auth configs for google
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '290148171356-pg45o3vdpvan6ognhnke4rm2uvehbtcm.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
