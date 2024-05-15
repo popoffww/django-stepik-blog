@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     # pip install social-auth-app-django
     'social_django',
+    'django_bootstrap5'
 ]
 
 MIDDLEWARE = [
