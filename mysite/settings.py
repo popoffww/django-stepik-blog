@@ -71,8 +71,17 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     # pip install social-auth-app-django
     'social_django',
-    'django_bootstrap5'
+    'django_bootstrap5',
+    # API 
+    'rest_framework',
+    'blog_api.apps.BlogApiConfig',
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
