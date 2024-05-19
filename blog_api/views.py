@@ -4,6 +4,7 @@ from blog.models import Post
 from .serializers import PostSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
+from rest_framework.pagination import PageNumberPagination
 
 class PostList(generics.ListCreateAPIView):
     # queryset = Post.objects.all()
@@ -39,6 +40,11 @@ class PostDetail(mixins.RetrieveModelMixin,
         return self.destroy(request, *args, **kwargs)
 
 
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 3
+    page_size_query_param = 'page_size'
+    max_page_size = 10
+
 
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
@@ -50,6 +56,14 @@ class PostList(generics.ListCreateAPIView):
     # ordering_fields = ['author__id', 'publish']
     ordering_fields = '__all__'
     ordering = ['body']
+    pagination_class = StandardResultsSetPagination
+
+
+class CustomSearchFilter(filters.SearchFilter):
+    def get_search_fields(self, view, request):
+        if request.query_params.get('title_only'):
+            return ['title']
+        return super().get_search_fields(view, request)
 
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
